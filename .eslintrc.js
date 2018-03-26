@@ -36,6 +36,7 @@ module.exports = {
     'padded-blocks': 0,
     'semi-spacing': 0,
     'comma-spacing': 0,
-    'no-use-before-define': 0
+    'no-use-before-define': 0,
+    'no-side-effects-in-computed-properties': 'off'
   }
 }
