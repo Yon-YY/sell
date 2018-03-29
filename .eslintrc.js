@@ -37,6 +37,6 @@ module.exports = {
     'semi-spacing': 0,
     'comma-spacing': 0,
     'no-use-before-define': 0,
-    'no-side-effects-in-computed-properties': 'off'
+    'no-side-effects-in-computed-properties': 0
   }
 }
