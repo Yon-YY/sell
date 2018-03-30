@@ -16,7 +16,8 @@
           <li v-for="(item, index) in goods" class="food-list" :key="index" ref="foodList">
             <h1 class="title">{{item.name}}</h1>
             <ul>
-              <li @click="selectFood(food, $event)" v-for="(food, index) in item.foods" class="food-item border-1px" :key="index">
+              <li @click="selectFood(food, $event)" v-for="(food, index) in item.foods" class="food-item border-1px"
+                  :key="index">
                 <div class="icon">
                   <img :src="food.icon" alt="">
                 </div>
@@ -54,6 +55,7 @@
   import food from '../food/food';
 
   const ERR_OK = 0;
+  const debug = process.env.NODE_ENV !== 'production';
 
   export default {
     props: {
@@ -95,7 +97,9 @@
     created() {
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
 
-      this.$http.get('/api/goods').then((response) => {
+//      this.$http.get('/api/goods').then((response) => {
+      const url = debug ? '/api/goods' : 'http://ustbhuangyi.com/sell/api/goods';
+      this.$http.get(url).then((response) => {
         response = response.body;
         if (response.errno === ERR_OK) {
           this.goods = response.data;
@@ -118,7 +122,7 @@
         this.foodsScroll.scrollToElement(el, 300);
       },
       selectFood (food, event) {
-        if(!event._constructed) {
+        if (!event._constructed) {
           return;
         }
         this.selectedFood = food;
